@@ -207,11 +207,13 @@
     transition: transform .2s ease;
   }
   #playBtn:hover{ transform: scale(1.06); }
-  .spotify-embed{
-    border-radius:14px; overflow:hidden; margin:6px auto 0 auto;
-    max-width:340px; box-shadow:0 10px 26px rgba(0,0,0,.28);
+  #playBtn{
+    background:var(--gold); color:var(--wine-deep); border:none; border-radius:999px;
+    width:58px; height:58px; font-size:1.3rem; cursor:pointer; text-decoration:none;
+    display:flex; align-items:center; justify-content:center; margin:0 auto;
+    transition: transform .2s ease;
   }
-  .spotify-embed iframe{ width:100%; height:152px; display:block; border:none; }
+  #playBtn:hover{ transform: scale(1.06); }
   .player-hint{ font-size:.72rem; opacity:.6; margin-top:16px; }
 
   /* ---------- LILY SURPRISE ---------- */
@@ -428,7 +430,7 @@
         <use href="#lilyBloom" transform="translate(150,105) scale(1)"/>
         <use href="#lilyBloom" transform="translate(208,128) scale(0.85) rotate(10)"/>
       </svg>
-      <p>Sé que te encantan los lirios morados 💜 — estos son apenas los primeros. Te prometí que te iba a regalar unos de verdad, y pienso cumplirlo pronto.</p>
+      <p>Sé que te encantan los lirios morados 💜 — estos son apenas los primeros. Te prometí que te iba a regalar unos de verdad, y espero cumplirlo.</p>
     </div>
   </section>
 
@@ -438,15 +440,11 @@
     <div class="kicker">Nuestra canción</div>
     <h2 class="section-title">Dale play</h2>
     <div class="player">
+      <div class="record" id="record"></div>
       <div class="song-title">Sweater Weather</div>
       <div class="song-artist">The Neighbourhood</div>
-      <div class="spotify-embed">
-        <iframe src="https://open.spotify.com/embed/track/2QjOHCTQ1Jl3zawyYOpxh6?utm_source=generator&theme=0"
-          title="Sweater Weather - The Neighbourhood"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"></iframe>
-      </div>
-      <div class="player-hint">Dale play en el reproductor 🎧</div>
+      <a id="playBtn" href="https://open.spotify.com/track/2QjOHCTQ1Jl3zawyYOpxh6" target="_blank" rel="noopener" aria-label="Escuchar en Spotify">▶</a>
+      <div class="player-hint">Se abre en Spotify — la canción completa, sin anuncios de video 🎧</div>
     </div>
   </section>
 
@@ -544,6 +542,9 @@
   });
 
   // countdown to Aug 19
+  document.getElementById('playBtn').addEventListener('click', () => {
+    document.getElementById('record').classList.add('playing');
+  });
   const target = new Date('2026-08-19T21:40:00');
   function updateCountdown(){
     const now = new Date();
