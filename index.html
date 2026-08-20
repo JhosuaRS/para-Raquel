@@ -15,6 +15,9 @@
     --cream:#FFF8F4;
     --gold:#C9A15A;
     --ink:#2B1216;
+    --lily:#7C4FA0;
+    --lily-light:#B98FDA;
+    --lily-deep:#4E2E6B;
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -211,7 +214,42 @@
   .spotify-embed iframe{ width:100%; height:152px; display:block; border:none; }
   .player-hint{ font-size:.72rem; opacity:.6; margin-top:16px; }
 
-  /* ---------- COUNTDOWN / FOOTER ---------- */
+  /* ---------- LILY SURPRISE ---------- */
+  #lily-surprise{ text-align:center; }
+  .lily-bud-btn{
+    background:none; border:none; cursor:pointer; padding:14px;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+  }
+  .lily-bud-btn svg{ width:60px; height:80px; transition: transform .3s ease; }
+  .lily-bud-btn:hover svg{ transform: scale(1.06); }
+  .lily-bud-btn .hint{
+    font-family:'Caveat',cursive; font-size:1.2rem; color:var(--lily);
+  }
+  .lily-bud-btn.hidden{ display:none; }
+
+  .lily-reveal{
+    display:none; flex-direction:column; align-items:center; gap:18px;
+    animation: bloomIn .8s ease both;
+  }
+  .lily-reveal.show{ display:flex; }
+  @keyframes bloomIn{
+    from{ opacity:0; transform: scale(.7) translateY(10px); }
+    to{ opacity:1; transform: scale(1) translateY(0); }
+  }
+  .lily-reveal svg{ width:170px; height:170px; }
+  .lily-reveal p{
+    font-family:'Caveat',cursive; font-size:1.4rem; color:var(--lily-deep);
+    max-width:360px; line-height:1.4;
+  }
+  .lily-petal{
+    position:fixed; top:-30px; pointer-events:none; z-index:50;
+    font-size:1.4rem; animation: petalFall linear forwards;
+  }
+  @keyframes petalFall{
+    to{ transform: translateY(105vh) rotate(360deg); opacity:0; }
+  }
+
+
   #countdown{ text-align:center; }
   .count-box{
     display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:10px;
@@ -328,6 +366,57 @@
     </div>
   </section>
 
+  <!-- LILY SURPRISE -->
+  <section id="lily-surprise">
+    <svg class="mini-bow" viewBox="0 0 60 40" fill="none"><path d="M30 20 C18 6,2 8,2 20 C2 32,18 34,30 20Z" fill="currentColor" opacity=".25"/><path d="M30 20 C42 6,58 8,58 20 C58 32,42 34,30 20Z" fill="currentColor" opacity=".25"/><circle cx="30" cy="20" r="5" fill="currentColor"/></svg>
+    <div class="kicker">Una cosita más</div>
+    <h2 class="section-title">Algo que sé que te gusta</h2>
+
+    <button id="lilyBudBtn" class="lily-bud-btn" aria-label="Revelar sorpresa">
+      <svg viewBox="0 0 60 90" fill="none">
+        <path d="M30 88 L30 40" stroke="#5A8C5A" stroke-width="3" stroke-linecap="round"/>
+        <path d="M30 55 C 20 55, 14 62, 12 70" stroke="#5A8C5A" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <ellipse cx="30" cy="26" rx="13" ry="24" fill="url(#budGrad)"/>
+      </svg>
+      <span class="hint">tocá el capullo 🌱</span>
+      <defs>
+        <linearGradient id="budGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#B98FDA"/>
+          <stop offset="100%" stop-color="#4E2E6B"/>
+        </linearGradient>
+      </defs>
+    </button>
+
+    <div id="lilyReveal" class="lily-reveal">
+      <svg viewBox="0 0 200 200" fill="none">
+        <defs>
+          <linearGradient id="petalGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#C9A8DE"/>
+            <stop offset="100%" stop-color="#6B3F92"/>
+          </linearGradient>
+        </defs>
+        <path d="M100 100 L100 190" stroke="#5A8C5A" stroke-width="4" stroke-linecap="round"/>
+        <path d="M100 150 C 80 150, 65 165, 60 180" stroke="#5A8C5A" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <g transform="translate(100,95)">
+          <g transform="rotate(0)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
+          <g transform="rotate(60)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
+          <g transform="rotate(120)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
+          <g transform="rotate(180)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
+          <g transform="rotate(240)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
+          <g transform="rotate(300)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
+          <line x1="0" y1="0" x2="6" y2="-38" stroke="#3A2350" stroke-width="1.5"/>
+          <line x1="0" y1="0" x2="-6" y2="-38" stroke="#3A2350" stroke-width="1.5"/>
+          <line x1="0" y1="0" x2="0" y2="-42" stroke="#3A2350" stroke-width="1.5"/>
+          <circle cx="6" cy="-38" r="2.2" fill="#C9A15A"/>
+          <circle cx="-6" cy="-38" r="2.2" fill="#C9A15A"/>
+          <circle cx="0" cy="-42" r="2.2" fill="#C9A15A"/>
+          <circle cx="0" cy="0" r="5" fill="#4E2E6B"/>
+        </g>
+      </svg>
+      <p>Sé que te encantan los lirios morados 💜 — estos son apenas los primeros de muchos que te voy a regalar de verdad.</p>
+    </div>
+  </section>
+
   <!-- MUSIC -->
   <section id="music">
     <svg class="mini-bow" viewBox="0 0 60 40" fill="none"><path d="M30 20 C18 6,2 8,2 20 C2 32,18 34,30 20Z" fill="currentColor" opacity=".25"/><path d="M30 20 C42 6,58 8,58 20 C58 32,42 34,30 20Z" fill="currentColor" opacity=".25"/><circle cx="30" cy="20" r="5" fill="currentColor"/></svg>
@@ -418,6 +507,26 @@
   }
   updateSince();
   setInterval(updateSince, 30000);
+
+  // lily surprise reveal
+  const lilyBudBtn = document.getElementById('lilyBudBtn');
+  const lilyReveal = document.getElementById('lilyReveal');
+  lilyBudBtn.addEventListener('click', () => {
+    lilyBudBtn.classList.add('hidden');
+    lilyReveal.classList.add('show');
+    for(let i=0;i<18;i++){
+      setTimeout(() => {
+        const p = document.createElement('span');
+        p.textContent = '🪻';
+        p.className = 'lily-petal';
+        p.style.left = Math.random()*100+'vw';
+        p.style.animationDuration = (2.5+Math.random()*2)+'s';
+        p.style.fontSize = (14+Math.random()*10)+'px';
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 5000);
+      }, i*120);
+    }
+  });
 
   // countdown to Aug 19
   const target = new Date('2026-08-19T21:40:00');
