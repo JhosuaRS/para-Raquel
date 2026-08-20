@@ -207,6 +207,8 @@
     transition: transform .2s ease;
   }
   #playBtn:hover{ transform: scale(1.06); }
+  #ytHolder{ position:absolute; width:2px; height:2px; overflow:hidden; opacity:0; pointer-events:none; }
+  #ytHolder iframe{ width:2px; height:2px; }
   .player-hint{ font-size:.72rem; opacity:.6; margin-top:16px; }
 
   /* ---------- LILY SURPRISE ---------- */
@@ -436,8 +438,13 @@
       <div class="record" id="record"></div>
       <div class="song-title">Sweater Weather</div>
       <div class="song-artist">The Neighbourhood</div>
-      <a id="playBtn" href="https://open.spotify.com/track/2QjOHCTQ1Jl3zawyYOpxh6" target="_blank" rel="noopener" aria-label="Escuchar en Spotify">▶</a>
-      <div class="player-hint">Se abre en Spotify — la canción completa, sin anuncios de video 🎧</div>
+      <button id="playBtn" aria-label="Reproducir canción">▶</button>
+      <div class="player-hint">Con audífonos, suena mejor 🎧</div>
+      <div id="ytHolder" aria-hidden="true">
+        <iframe id="ytIframe"
+          src="https://www.youtube.com/embed/GCdwKhTtNNw?enablejsapi=1&playsinline=1&controls=0"
+          allow="autoplay; encrypted-media" frameborder="0"></iframe>
+      </div>
     </div>
   </section>
 
@@ -535,8 +542,27 @@
   });
 
   // countdown to Aug 19
-  document.getElementById('playBtn').addEventListener('click', () => {
-    document.getElementById('record').classList.add('playing');
+  // controls the already-loaded hidden iframe via postMessage,
+  // so the video is never reloaded (avoids repeated ads on every click)
+  let playing = false;
+  const playBtn = document.getElementById('playBtn');
+  const record = document.getElementById('record');
+  const ytIframe = document.getElementById('ytIframe');
+  function ytCommand(func){
+    ytIframe.contentWindow.postMessage(JSON.stringify({event:'command', func:func, args:[]}), 'https://www.youtube.com');
+  }
+  playBtn.addEventListener('click', () => {
+    if(!playing){
+      ytCommand('playVideo');
+      record.classList.add('playing');
+      playBtn.textContent = '❚❚';
+      playing = true;
+    } else {
+      ytCommand('pauseVideo');
+      record.classList.remove('playing');
+      playBtn.textContent = '▶';
+      playing = false;
+    }
   });
   const target = new Date('2026-08-19T21:40:00');
   function updateCountdown(){
