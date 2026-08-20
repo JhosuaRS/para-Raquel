@@ -204,6 +204,11 @@
     transition: transform .2s ease;
   }
   #playBtn:hover{ transform: scale(1.06); }
+  .yt-embed{
+    border-radius:14px; overflow:hidden; margin:6px auto 0 auto;
+    max-width:340px; aspect-ratio:16/9; box-shadow:0 10px 26px rgba(0,0,0,.28);
+  }
+  .yt-embed iframe{ width:100%; height:100%; display:block; border:none; }
   .player-hint{ font-size:.72rem; opacity:.6; margin-top:16px; }
 
   /* ---------- COUNTDOWN / FOOTER ---------- */
@@ -330,10 +335,15 @@
     <h2 class="section-title">Dale play</h2>
     <div class="player">
       <div class="record" id="record"></div>
-      <div class="song-title">Flores</div>
-      <div class="song-artist">LATIN MAFIA</div>
-      <a id="playBtn" href="https://www.youtube.com/watch?v=1oOoOJDbhXQ" target="_blank" rel="noopener" aria-label="Escuchar en YouTube">▶</a>
-      <div class="player-hint">Se abre en YouTube — con audífonos, suena mejor 🎧</div>
+      <div class="song-title">Sweater Weather</div>
+      <div class="song-artist">The Neighbourhood</div>
+      <div class="yt-embed">
+        <iframe src="https://www.youtube.com/embed/GCdwKhTtNNw"
+          title="Sweater Weather - The Neighbourhood"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen loading="lazy"></iframe>
+      </div>
+      <div class="player-hint">Dale play arriba 👆 — con audífonos, suena mejor 🎧</div>
     </div>
   </section>
 
@@ -410,10 +420,7 @@
   updateSince();
   setInterval(updateSince, 30000);
 
-  // countdown to Aug 20
-  document.getElementById('playBtn').addEventListener('click', () => {
-    document.getElementById('record').classList.add('playing');
-  });
+  // countdown to Aug 19
   const target = new Date('2026-08-19T21:40:00');
   function updateCountdown(){
     const now = new Date();
