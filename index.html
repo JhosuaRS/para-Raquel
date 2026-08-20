@@ -236,7 +236,7 @@
     from{ opacity:0; transform: scale(.7) translateY(10px); }
     to{ opacity:1; transform: scale(1) translateY(0); }
   }
-  .lily-reveal svg{ width:170px; height:170px; }
+  .lily-reveal svg{ width:260px; height:200px; }
   .lily-reveal p{
     font-family:'Caveat',cursive; font-size:1.4rem; color:var(--lily-deep);
     max-width:360px; line-height:1.4;
@@ -388,32 +388,47 @@
     </button>
 
     <div id="lilyReveal" class="lily-reveal">
-      <svg viewBox="0 0 200 200" fill="none">
+      <svg viewBox="0 0 300 230" fill="none">
         <defs>
           <linearGradient id="petalGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stop-color="#C9A8DE"/>
             <stop offset="100%" stop-color="#6B3F92"/>
           </linearGradient>
+          <g id="lilyBloom">
+            <g transform="rotate(0)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
+            <g transform="rotate(60)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
+            <g transform="rotate(120)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
+            <g transform="rotate(180)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
+            <g transform="rotate(240)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
+            <g transform="rotate(300)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
+            <line x1="0" y1="0" x2="6" y2="-38" stroke="#3A2350" stroke-width="1.5"/>
+            <line x1="0" y1="0" x2="-6" y2="-38" stroke="#3A2350" stroke-width="1.5"/>
+            <line x1="0" y1="0" x2="0" y2="-42" stroke="#3A2350" stroke-width="1.5"/>
+            <circle cx="6" cy="-38" r="2.2" fill="#C9A15A"/>
+            <circle cx="-6" cy="-38" r="2.2" fill="#C9A15A"/>
+            <circle cx="0" cy="-42" r="2.2" fill="#C9A15A"/>
+            <circle cx="0" cy="0" r="5" fill="#4E2E6B"/>
+          </g>
         </defs>
-        <path d="M100 100 L100 190" stroke="#5A8C5A" stroke-width="4" stroke-linecap="round"/>
-        <path d="M100 150 C 80 150, 65 165, 60 180" stroke="#5A8C5A" stroke-width="4" fill="none" stroke-linecap="round"/>
-        <g transform="translate(100,95)">
-          <g transform="rotate(0)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
-          <g transform="rotate(60)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
-          <g transform="rotate(120)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
-          <g transform="rotate(180)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
-          <g transform="rotate(240)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
-          <g transform="rotate(300)"><path d="M0 0 C -14 -18, -10 -55, 0 -70 C 10 -55, 14 -18, 0 0 Z" fill="url(#petalGrad)"/></g>
-          <line x1="0" y1="0" x2="6" y2="-38" stroke="#3A2350" stroke-width="1.5"/>
-          <line x1="0" y1="0" x2="-6" y2="-38" stroke="#3A2350" stroke-width="1.5"/>
-          <line x1="0" y1="0" x2="0" y2="-42" stroke="#3A2350" stroke-width="1.5"/>
-          <circle cx="6" cy="-38" r="2.2" fill="#C9A15A"/>
-          <circle cx="-6" cy="-38" r="2.2" fill="#C9A15A"/>
-          <circle cx="0" cy="-42" r="2.2" fill="#C9A15A"/>
-          <circle cx="0" cy="0" r="5" fill="#4E2E6B"/>
+
+        <!-- stems -->
+        <path d="M150 222 L150 148" stroke="#5A8C5A" stroke-width="4" stroke-linecap="round"/>
+        <path d="M150 175 L92 128" stroke="#5A8C5A" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M150 175 L208 128" stroke="#5A8C5A" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+        <!-- little bow tying the stems -->
+        <g transform="translate(150,196)">
+          <path d="M0 0 C -14 -8, -22 -2, -22 6 C -22 12, -14 14, 0 6 Z" fill="#A8455F" stroke="#C9A15A" stroke-width="1.2"/>
+          <path d="M0 0 C 14 -8, 22 -2, 22 6 C 22 12, 14 14, 0 6 Z" fill="#A8455F" stroke="#C9A15A" stroke-width="1.2"/>
+          <circle cx="0" cy="3" r="4" fill="#C9A15A"/>
         </g>
+
+        <!-- three lily blooms -->
+        <use href="#lilyBloom" transform="translate(92,128) scale(0.85) rotate(-10)"/>
+        <use href="#lilyBloom" transform="translate(150,105) scale(1)"/>
+        <use href="#lilyBloom" transform="translate(208,128) scale(0.85) rotate(10)"/>
       </svg>
-      <p>Sé que te encantan los lirios morados 💜 — estos son apenas los primeros de muchos que te voy a regalar de verdad.</p>
+      <p>Sé que te encantan los lirios morados 💜 — estos son apenas los primeros. Te prometí que te iba a regalar unos de verdad, y pienso cumplirlo pronto.</p>
     </div>
   </section>
 
